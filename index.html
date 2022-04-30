@@ -21,16 +21,41 @@
             height: 100vmin;
             width: 100vmin;
         }
+        svg {
+          position: fixed;
+          height: 100vmin;
+          width: 100vmin;
+        }
+        
+          
+
     </style>
     <script src="index.js" defer type="module"></script>
     <!-- defer makes the script come after the body -->
     <!-- type module opens up the possibility to use import/export -->
   </head>
   <body>
-    <img src="assets/metromap.jpg" alt="Sofia metro" usemap="#sofia-metro-map">
-    <map name="sofia-metro-map">
-        <area  shape="circle" coords="337,300,144" alt="Coffee" href="https://www.w3schools.com/howto/howto_css_modals.asp">
-    </map>
+      <img src="assets/metromap.jpg" alt="Sofia metro">
+      <svg>
+        <a alt="NDK" title="NDK" href="https://www.theenclavehabitat.org/about-5">
+          <circle cx="45.27%" cy="50.35%" r="0.75%" stroke="green" fill="yellow"/>
+        </a>
+
+        <a alt="med-uni" title="med-uni" href="https://www.theenclavehabitat.org/about-5">
+          <circle cx="37.6%" cy="56.7%" r="0.45%" stroke="green" fill="yellow"/>
+        </a>
+
+        <a alt="bul-bg" title="bul-bg" href="https://www.theenclavehabitat.org/about-5">
+          <circle cx="31.3%" cy="62.9%" r="0.45%" stroke="green" fill="yellow"/>
+        </a>
+        
+        <a alt="krasno-selo" title="krasno-selo" href="https://www.theenclavehabitat.org/about-5">
+          <circle cx="26.1%" cy="64.15%" r="0.45%" stroke="green" fill="yellow"/>
+        </a>
+
+      </svg>
+    
+    
     <!-- instead of img map, use transparetn svg circles with links that are resizable -->
   </body>
 </html>

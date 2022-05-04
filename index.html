@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: center;
             margin: 0;
-            background-color: black;
+            background-color: white;
         }
 
         /* The Map */
@@ -32,6 +32,7 @@
         
           
         /* The Modal */
+
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
@@ -47,21 +48,21 @@
         }
 
         /* Modal Content */
+
         .modal-content {
           border-radius: 5px;
           position: relative;
           background-color: #fefefe;
           margin: auto;
           padding: 0;
-          width: 20%;
-          height: 60%;
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
           animation-name: bounce;
           animation-duration: 0.2s;
         }
 
-        /* Add Animation For Modal*/
+        
         /*Setup the bounce animation*/
+
         @keyframes bounce {
           0% {
             /*transform*/
@@ -76,6 +77,7 @@
                 -o-box-shadow:0 3px 20px rgba(0,0,0,0.9);
                         box-shadow:0 3px 20px rgba(0,0,0,0.9);
           }
+
           55% {
             -webkit-transform: scale3d(1.08,1.08,1);
             -moz-transform: scale3d(1.08,1.08,1);
@@ -88,6 +90,7 @@
             -o-box-shadow: 0 10px 20px rgba(0,0,0,0);
             box-shadow: 0 10px 20px rgba(0,0,0,0);
           }
+
           75% {
             -webkit-transform: scale3d(0.95,0.95,1);
             -moz-transform: scale3d(0.95,0.95,1);
@@ -100,6 +103,7 @@
             -o-box-shadow: 0 0 20px rgba(0,0,0,0.9);
             box-shadow: 0 0 20px rgba(0,0,0,0.9);
           }
+
           100% {
             -webkit-transform: scale3d(1,1,1);
             -moz-transform: scale3d(1,1,1);
@@ -114,33 +118,22 @@
           }
         }
 
+        /* The Header = Close + <p> */
+
         .header {
-          width: 100%;
-          height: 17%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           background-color: aquamarine;
-          border-radius: 5px 5px 0 0;
-          
         }
-        span {
-          box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-          vertical-align: top;
-        }
+
         /* The Close Button */
         .close {
           color: #aaaaaa;
-          float: right;
-          position: relative;
-          top: 5%;
-          right: 12px;
+
           font-size: 40px;
           font-weight: bold;
-        }
-        .modal-name {
-          color: #aaaaaa;
-          position: relative;
-          top: 30%;
-          left: 10px;
-          font-weight: bold;
+
         }
 
         .close:hover,
@@ -149,6 +142,7 @@
           text-decoration: none;
           cursor: pointer;
         }
+
     </style>
     <script src="index.js" defer type="module"></script>
     <!-- defer makes the script come after the body -->
@@ -187,9 +181,18 @@
       <!-- Modal content -->
       <div class="modal-content">
         <div class="header">
-          <span class="modal-name">Some text in the Modal..</span>
-          <span class="close">&times;</span>
+          <!-- close is first so that it doesnt go below modal-name when resizing -->
+          <h3 class="modal-name">Hello World</h3>
+          <button class="close" data-id="demo-modal" aria-label="Close">
+            &times;
+          </button>
         </div>
+        <p class="modal-body">
+          Natus earum velit ab nobis eos. Sed et exercitationem voluptatum omnis
+          dolor voluptates. Velit ut ipsam sunt ipsam nostrum. Maiores officia
+          accusamus qui sapiente. Dolor qui vel placeat dolor nesciunt quo dolor
+          dolores. Quo accusamus hic atque nisi minima.
+        </p>
         
       </div>
 

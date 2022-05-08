@@ -7,6 +7,7 @@
     <title>Sofia Metro Time</title>
     <link rel="stylesheet" href="style.css">
     <style>
+      /* BODY */
         * {
           box-sizing: border-box;
         }
@@ -36,6 +37,7 @@
         
           
         /* The Modal */
+
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
@@ -51,29 +53,35 @@
         }
 
         /* Modal Content */
+
         .modal-content {
-          
           width: 400px;
           padding: 20px 30px;
           color:#000;
           background-color: #FCF8F5;
           position: fixed;
-          top: 40%;
-          left: 50%;
-          transform: translate(-50%);
+          top: none;
+          left: none;
+          transform: none;
           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-          z-index: 20;
-          animation: bounce 0.6s;
+          z-index: 0;
+          animation: none;
         }
 
-        /* Add Animation For Modal*/
+        /*Animation For Modal-Open*/
+
         @keyframes bounce {
-          0% { transform: translate(-350%);}
-          70% {transform: translate(-45%); }
-          90% {transform: translate(-53%); }
-          100% { transform: translate(-50%); }
+          0% {transform: translate(-350%);}
+          70% {transform: translate(-45%);}
+          90% {transform: translate(-53%);}
+          100% {transform: translate(-50%);}
         }
 
+        /*Animation For Modal-Close*/
+        @keyframes bounce-off {
+          0% {transform: translate(-50%);}
+          100% {transform: translate(350%);}
+        }
 
         /* The Close Button */
         .close {
@@ -89,6 +97,7 @@
           text-decoration: none;
           cursor: pointer;
         }
+        
     </style>
     <script src="index.js" defer type="module"></script>
     <!-- defer makes the script come after the body -->
@@ -125,7 +134,7 @@
     <div id="myModal" class="modal">
 
       <!-- Modal content -->
-      <div class="modal-content">
+      <div class="modal-content" id="modal-box">
         <span class="close">&times;</span>
         <p>Some text in the Modal..</p>
       </div>

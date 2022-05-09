@@ -23,7 +23,7 @@ btn.onclick = function() {
 
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+document.getElementById('close-btn').onclick = function() {
   // animation is set in motion
   document.getElementById('modal-box').style.animation = 'bounce-off 0.5s';
   // modal conent is revert to inital state

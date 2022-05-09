@@ -55,7 +55,9 @@
         /* Modal Content */
 
         .modal-content {
-          width: 400px;
+          width: 25%;
+          min-width: 200px;
+          height: auto;
           padding: 20px 30px;
           color:#000;
           background-color: #FCF8F5;
@@ -67,6 +69,17 @@
           z-index: 0;
           animation: none;
         }
+
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+        }
+        /* css for close button animation */
+        
+        
+
+
+  
 
         /*Animation For Modal-Open*/
 
@@ -135,8 +148,21 @@
 
       <!-- Modal content -->
       <div class="modal-content" id="modal-box">
-        <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
+
+        <!-- Modal header -->
+        <div class="modal-header" id="modal-header">
+          <h4 class="modal-title" id="modal-title">
+              Modal Heading
+          </h4>
+          <button type="close-btn" class="close-btn"
+              id="close-btn">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body" id="modal-body">
+          Modal Body
+        </div>
+        
       </div>
 
     </div>

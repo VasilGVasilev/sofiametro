@@ -2,5 +2,22 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "request": "^2.88.2"
-  }
+  },
+  "name": "sofiametro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VasilGVasilev/sofiametro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VasilGVasilev/sofiametro/issues"
+  },
+  "homepage": "https://github.com/VasilGVasilev/sofiametro#readme",
+  "description": ""
 }

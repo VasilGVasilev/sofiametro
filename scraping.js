@@ -8,6 +8,9 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
+//  WE WILL CHANGE TO EXPRESS AND USE ASYNC/AWAIT TO WAIT FOR LOAD PAGE AND THEN SCRAPE
+
+
 request('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/3320', (error, response, html) => {
     if (!error && response.statusCode == 200) {
         // const $ like jQuery

@@ -1,45 +1,68 @@
-// it first opens the relevant station page
 
-// it either puts all numbers into an array and checks for closest number
-// or
-// it checks table based on current time -> hour; then look for minutes in subtable
+//dependencies
 
-// maybe change request in future because it is compromised 
-const request = require('request');
-const cheerio = require('cheerio');
-
-//  WE WILL CHANGE TO EXPRESS AND USE ASYNC/AWAIT TO WAIT FOR LOAD PAGE AND THEN SCRAPE
+const puppeteer = require('puppeteer');
 
 
-// NEW CODE
-export async function scrapeJob(url) {
-    const browser = await puppeteer.launch({headless: false});
-    const page = await browser.newPage();
-    await page.goto(url);
+//main function for our scraper
 
-    const el = await page.$('#primary > div > div.search-heading.text-center > h1 > span.one-of-all-heading');
-    const text = await el.getProperty('textContent');
-    const name = await text.jsonValue();
+module.exports =  (async () => {
 
-    await browser.close(); // I have not put await in front of browser.close() which
-    //return name; // resulted in two blank pages without the relevant scraping
-    return name;
-}
+  //launching and opening our page
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-// OLD CODE
 
-request('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/3320', (error, response, html) => {
-    if (!error && response.statusCode == 200) {
-        // const $ like jQuery
-        const $ = cheerio.load(html);
-        const firstTime = $('/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[1]/div[2]/div/div[2]/table/tbody/tr/td[2]/div/a[1]')
-        // !!!
-        // the problem is that the table doesnt update with the link and it scrapes the defualt first station table
-        // also move to another lib other than request
-        // !!!
-        
-        let s = firstTime.text();
-        console.log(s.trim());
+  //the waitUntil CRUCIAL FOR HAVING FINAL STATE OF RENDERING OF DYNAMIC DIV
+  await page.goto('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/3320', {waitUntil: 'networkidle0'});
+  
+  //extract info from all table rows and map them onto a new array
+  const hours = await page.evaluate(() => {
+    const result = Array.from(document.querySelectorAll('#schedule_direction_10757_4424_container > div > div.schedule_times > table > tbody > tr > td > div > a'));
+    // if .innerText is put on Array.from, the execution context of puppeteer is destroyed
+    // to avoid that => return a new array that traverses the above by extrating innerText
+    // innerText instead of textContext because the former is aware of rendered appearance of text
+    return result.map(el => el.innerText);
+  });
 
-    }
-})
+  // Tried arr.push and arrow function but .replace() TypeError due to hours[i] undefined in for loop
+  //  => seamless .map() solution
+  const hourNums = hours.map(el => parseInt(el.replace(":", "")));
+
+  
+  // current time
+  var current = new Date();
+  var h = current.getHours();
+  var m = current.getMinutes();
+  let currentTime = Number('' + h + m);
+  console.log(currentTime);
+
+  // next two trains
+  let firstN = 0;
+  let secondN = 0;
+
+  let i = 0;
+  while (hourNums[i] < currentTime) {
+    i++
+    firstN = hourNums[i];
+    let l = i + 1;
+    secondN = hourNums[l];
+  }
+  
+  // metro offtime disclaimer
+  if (typeof firstN === 'undefined' && typeof secondN === 'undefined' || firstN === 0 && secondN === 0) {
+    console.log("Metro Not working")
+  } else {
+    console.log(firstN);
+    console.log(secondN);
+  }
+
+  
+  
+  await browser.close();
+})();
+
+// send data to be visualised on p.class="input"
+
+
+

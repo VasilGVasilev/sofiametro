@@ -44,7 +44,7 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the link, open the modal 
-btn.onclick = function() {
+document.getElementById("myBtn") = function() {
   // animation is set in motion
   document.getElementById('modal-box').style.animation = 'bounce 0.6s'
   // modal content is set to new fetures

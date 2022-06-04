@@ -33,6 +33,7 @@
           position: fixed;
           height: 100vmin;
           width: 100vmin;
+          z-index: 1;
         }
         
           
@@ -66,7 +67,6 @@
           left: none;
           transform: none;
           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-          z-index: 0;
           animation: none;
         }
 
@@ -120,14 +120,12 @@
     <!-- INITIAL MAP -->
 
       <img src="assets/metromap.jpg" alt="Sofia metro">
-
       <svg>
-
         <a id="myBtn" alt="NDK" title="NDK">
           <circle cx="45.27%" cy="50.35%" r="0.75%" fill="transparent"/>
         </a>
 
-        <a alt="med-uni" title="med-uni" href="https://www.theenclavehabitat.org/about-5">
+        <a alt="med-uni" title="med-uni" id="med-uni">
           <circle cx="37.6%" cy="56.7%" r="0.45%" stroke="green" fill="yellow"/>
         </a>
 
@@ -138,8 +136,9 @@
         <a alt="krasno-selo" title="krasno-selo" href="https://www.theenclavehabitat.org/about-5">
           <circle cx="26.1%" cy="64.15%" r="0.45%" stroke="green" fill="yellow"/>
         </a>
-
       </svg>
+
+
     <!-- instead of img map, use transparent svg circles with links because they are resizable accroding to the img -->
 
     <!-- MODAL -->

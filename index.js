@@ -1,50 +1,20 @@
 // this will be the central point of the app
-// NEW CODE
-
-
-// Express 
-
-//import 
-const bodyParser = require('body-parser');
-const scrapeJob = require('./scrapers');
-const express = require('express')
-const app = express()
-const port = 5500
-
-//create middleware to extract json from the body of our req
-app.use(bodyParser.json())
-
-//disable sec rule for local dev
-app.use(function(req,res,next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-    next();
-});
-
-
-app.get('/scrapers', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
-
-
-
-// OLD CODE
 
 // Get the modal
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+// btn = get element by id
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the link, open the modal 
-document.getElementById("myBtn") = function() {
+document.getElementById("myBtn").onclick = function() {
+  // modal is displayed
+  modal.style.display = 'block';
+  document.getElementById('modal-box').style.display = 'block'
+  
   // animation is set in motion
   document.getElementById('modal-box').style.animation = 'bounce 0.6s'
   // modal content is set to new fetures
@@ -52,8 +22,7 @@ document.getElementById("myBtn") = function() {
   document.getElementById('modal-box').style.top = '40%';
   document.getElementById('modal-box').style.left = '50%';
   document.getElementById('modal-box').style.zIndex = '20';
-  // modal is displayed
-  modal.style.display = "block";
+  
 }
 
 

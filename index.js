@@ -10,7 +10,22 @@ var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the link, open the modal 
-document.getElementById("myBtn").onclick = function() {
+document.getElementByAtt("myBtn").onclick = function() {
+  // modal is displayed
+  modal.style.display = 'block';
+  document.getElementById('modal-box').style.display = 'block'
+  
+  // animation is set in motion
+  document.getElementById('modal-box').style.animation = 'bounce 0.6s'
+  // modal content is set to new fetures
+  document.getElementById('modal-box').style.transform = 'translate(-50%)';
+  document.getElementById('modal-box').style.top = '40%';
+  document.getElementById('modal-box').style.left = '50%';
+  document.getElementById('modal-box').style.zIndex = '20';
+  
+}
+
+document.getElementById("med-uni").onclick = function() {
   // modal is displayed
   modal.style.display = 'block';
   document.getElementById('modal-box').style.display = 'block'

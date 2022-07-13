@@ -1,0 +1,108 @@
+/* BODY */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      background-color: black;
+  }
+
+  /* The Map */
+
+  img {
+      position: fixed;
+      height: 100vmin;
+      width: 100vmin;
+  }
+
+  svg {
+    position: fixed;
+    height: 100vmin;
+    width: 100vmin;
+
+    z-index: 1;
+  }
+  
+    
+  /* The Modal */
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    
+  }
+
+  /* Modal Content */
+
+  .modal-content {
+    width: 25%;
+    min-width: 200px;
+    height: auto;
+    padding: 20px 30px;
+    color:#000;
+    background-color: #FCF8F5;
+    position: fixed;
+    top: none;
+    left: none;
+    transform: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: none;
+    border-radius: 25px;
+    
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  /* css for close button animation */
+  
+  
+
+
+
+
+  /*Animation For Modal-Open*/
+
+  @keyframes bounce {
+    0% {transform: translate(-350%);}
+    70% {transform: translate(-45%);}
+    90% {transform: translate(-53%);}
+    100% {transform: translate(-50%);}
+  }
+
+  /*Animation For Modal-Close*/
+  @keyframes bounce-off {
+    0% {transform: translate(-50%);}
+    100% {transform: translate(350%);}
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  

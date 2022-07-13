@@ -5,113 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sofia Metro Time</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-      /* BODY */
-        * {
-          box-sizing: border-box;
-        }
-        body {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            background-color: black;
-        }
-
-        /* The Map */
-
-        img {
-            position: fixed;
-            height: 100vmin;
-            width: 100vmin;
-        }
-
-        svg {
-          position: fixed;
-          height: 100vmin;
-          width: 100vmin;
-          z-index: 1;
-        }
-        
-          
-        /* The Modal */
-
-        .modal {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
-          padding-top: 100px; /* Location of the box */
-          left: 0;
-          top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgb(0,0,0); /* Fallback color */
-          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-
-        .modal-content {
-          width: 25%;
-          min-width: 200px;
-          height: auto;
-          padding: 20px 30px;
-          color:#000;
-          background-color: #FCF8F5;
-          position: fixed;
-          top: none;
-          left: none;
-          transform: none;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-          animation: none;
-        }
-
-        .modal-header {
-          display: flex;
-          justify-content: space-between;
-        }
-        /* css for close button animation */
-        
-        
-
-
-  
-
-        /*Animation For Modal-Open*/
-
-        @keyframes bounce {
-          0% {transform: translate(-350%);}
-          70% {transform: translate(-45%);}
-          90% {transform: translate(-53%);}
-          100% {transform: translate(-50%);}
-        }
-
-        /*Animation For Modal-Close*/
-        @keyframes bounce-off {
-          0% {transform: translate(-50%);}
-          100% {transform: translate(350%);}
-        }
-
-        /* The Close Button */
-        .close {
-          color: #aaaaaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-          color: #000;
-          text-decoration: none;
-          cursor: pointer;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="main.css">
     <script src="index.js" defer type="module"></script>
     <!-- defer makes the script come after the body -->
     <!-- type module opens up the possibility to use import/export -->
@@ -121,19 +15,19 @@
 
       <img src="assets/metromap.jpg" alt="Sofia metro">
       <svg>
-        <a id="myBtn" alt="NDK" title="NDK">
+        <a class="btn" id="myBtn" title="3320">
           <circle cx="45.27%" cy="50.35%" r="0.75%" fill="transparent"/>
         </a>
 
-        <a alt="med-uni" title="med-uni" id="med-uni">
+        <a class="btn" title="med-uni" id="med-uni" data-num="3322">
           <circle cx="37.6%" cy="56.7%" r="0.45%" stroke="green" fill="yellow"/>
         </a>
 
-        <a alt="bul-bg" title="bul-bg" href="https://www.theenclavehabitat.org/about-5">
+        <a class="btn" title="bul-bg" data-num="3324">
           <circle cx="31.3%" cy="62.9%" r="0.45%" stroke="green" fill="yellow"/>
         </a>
         
-        <a alt="krasno-selo" title="krasno-selo" href="https://www.theenclavehabitat.org/about-5">
+        <a title="krasno-selo" data-num="3328">
           <circle cx="26.1%" cy="64.15%" r="0.45%" stroke="green" fill="yellow"/>
         </a>
       </svg>

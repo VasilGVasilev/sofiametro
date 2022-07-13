@@ -24,10 +24,12 @@ module.exports =  (async () => {
     // innerText instead of textContext because the former is aware of rendered appearance of text
     return result.map(el => el.innerText);
   });
-
+ 
   // Tried arr.push and arrow function but .replace() TypeError due to hours[i] undefined in for loop
   //  => seamless .map() solution
+  
   const hourNums = hours.map(el => parseInt(el.replace(":", "")));
+
 
   
   // current time
@@ -35,7 +37,7 @@ module.exports =  (async () => {
   var h = current.getHours();
   var m = current.getMinutes();
   let currentTime = Number('' + h + m);
-  console.log(currentTime);
+  
 
   // next two trains
   let firstN = 0;
@@ -50,12 +52,12 @@ module.exports =  (async () => {
   }
   
   // metro offtime disclaimer
-  if (typeof firstN === 'undefined' && typeof secondN === 'undefined' || firstN === 0 && secondN === 0) {
-    console.log("Metro Not working")
-  } else {
-    console.log(firstN);
-    console.log(secondN);
-  }
+  // if (typeof firstN === 'undefined' && typeof secondN === 'undefined' || firstN === 0 && secondN === 0) {
+  //   return "Metro Not working"
+  // } else {
+  //   console.log(firstN);
+  //   console.log(secondN);
+  // }
 
   
   

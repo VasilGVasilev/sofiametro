@@ -1,44 +1,30 @@
-// this will be the central point of the app
+// MAIN LOGIC OF APP
 
-// Get the modal
-var modal = document.getElementById("myModal");
+const stations = document.querySelectorAll('.station')
+const modal = document.getElementById("myModal");
+const span = document.getElementsByClassName("close")[0];
 
-// Get the button that opens the modal
-// btn = get element by id
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the link, open the modal 
-document.getElementByAtt("myBtn").onclick = function() {
-  // modal is displayed
-  modal.style.display = 'block';
-  document.getElementById('modal-box').style.display = 'block'
-  
-  // animation is set in motion
-  document.getElementById('modal-box').style.animation = 'bounce 0.6s'
-  // modal content is set to new fetures
-  document.getElementById('modal-box').style.transform = 'translate(-50%)';
-  document.getElementById('modal-box').style.top = '40%';
-  document.getElementById('modal-box').style.left = '50%';
-  document.getElementById('modal-box').style.zIndex = '20';
-  
+// selecting a station
+for (let i = 0; i < stations.length; i++){
+  stations[i].addEventListener('click', () => {
+      modal.style.display = 'block';
+      document.getElementById('modal-box').style.display = 'block'
+      
+      // animation is set in motion
+      document.getElementById('modal-box').style.animation = 'bounce 0.6s'
+      // modal content is set to new fetures
+      document.getElementById('modal-box').style.transform = 'translate(-50%)';
+      document.getElementById('modal-box').style.top = '40%';
+      document.getElementById('modal-box').style.left = '50%';
+      document.getElementById('modal-box').style.zIndex = '20';
+
+      let selectedStation = stations[i].getAttribute('data-num');
+      document.getElementById('modal-body').innerHTML+=selectedStation;
+  })
 }
 
-document.getElementById("med-uni").onclick = function() {
-  // modal is displayed
-  modal.style.display = 'block';
-  document.getElementById('modal-box').style.display = 'block'
-  
-  // animation is set in motion
-  document.getElementById('modal-box').style.animation = 'bounce 0.6s'
-  // modal content is set to new fetures
-  document.getElementById('modal-box').style.transform = 'translate(-50%)';
-  document.getElementById('modal-box').style.top = '40%';
-  document.getElementById('modal-box').style.left = '50%';
-  document.getElementById('modal-box').style.zIndex = '20';
-  
-}
 
 
 // When the user clicks on <span> (x), close the modal
@@ -50,6 +36,8 @@ document.getElementById('close-btn').onclick = function() {
   document.getElementById('modal-box').style.top = 'none';
   document.getElementById('modal-box').style.left = 'none';
   document.getElementById('modal-box').style.zIndex = '0';
+  // clear modal-body
+  document.getElementById('modal-body').innerHTML='';
   // setTimeout used to await the ending of the animation/faster than animation duration
   setTimeout(() => {modal.style.display = "none"}, 300);
   // even {modal...} is a function in JS
@@ -65,6 +53,8 @@ window.onclick = function(event) {
     document.getElementById('modal-box').style.top = 'none';
     document.getElementById('modal-box').style.left = 'none';
     document.getElementById('modal-box').style.zIndex = '0';
+    // clear modal-body
+    document.getElementById('modal-body').innerHTML='';
     // await animation
     setTimeout(() => {modal.style.display = "none"}, 300);
   }

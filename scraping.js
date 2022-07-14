@@ -1,6 +1,7 @@
 
 //dependencies
 
+const { first } = require('cheerio/lib/api/traversing');
 const puppeteer = require('puppeteer');
 
 
@@ -12,29 +13,23 @@ module.exports =  (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-
-  //the waitUntil CRUCIAL FOR HAVING FINAL STATE OF RENDERING OF DYNAMIC DIV
-  await page.goto('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/3320', {waitUntil: 'networkidle0'});
+  // {waituntil + timeout} are crucial for navigating up to the precise moment of final state of rendering of a dynamic div
+  // SUBJECT TO OPTIMISATION when in production -> when front is attached to back, try to catch error of exceeding max timeout by prompting a restart
+  await page.goto('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/3320', {waitUntil: 'load', timeout: 3000});
   
   //extract info from all table rows and map them onto a new array
   let hours = await page.evaluate(() => {
-    // select selector
-    // wrap it the nodes in an array with Array.form()
-    // make each node list element an array element with .map();
-    let result = Array.from(document.querySelectorAll('div.schedule_times > table > tbody > tr > td > div > a')).map(el => el.innerHTML);
-    return result;
-    // NB: innerText() returns the VISIBLE text contained in a node, 
-    // while textContent() returns the FULL text. 
-    // Example => HTML     <span>Hello <span style="display: none;">World</span></span>; 
-    // innerText() will return 'Hello', while textContent() will return 'Hello World'. 
-    
+    // 1) select selector
+    // 2) wrap it the nodes in an array with Array.form()
+    // 3) make each node list element an array element with .map();
+    return result = Array.from(document.querySelectorAll('div.schedule_times > table > tbody > tr > td > div > a')).map(el => el.innerHTML);
   });
 
   // Tried arr.push and arrow function but .replace() TypeError due to hours[i] undefined in for loop
   //  => seamless .map() solution
-  console.log(hours);
-  // const hourNums = hours.map(el => parseInt(el.replace(":", "")));
-
+  
+  const hourNums = hours.map(el => Number(el.replace(":", "")));
+  
 
   
   // current time
@@ -43,6 +38,32 @@ module.exports =  (async () => {
   var m = current.getMinutes();
   let currentTime = Number('' + h + m);
   
+  // next two trains
+  let firstTrain = 0;
+  let secondTrain = 0;
+  for (let i = 0; i < hourNums.length; i++){
+    if (currentTime < hourNums[i]){
+      firstTrain = hourNums[i];
+      secondTrain = hourNums[i+1];
+      break;
+    }
+  }
+  console.log(currentTime);
+  console.log(firstTrain);
+  console.log(secondTrain);
+
+  // format train arrival in minutes to pass
+  let firstTrainComesIn = firstTrain - currentTime;
+  let secondTrainComesIn = secondTrain - currentTime;
+
+  // check for metro not working
+  let startWorking = hourNums[0];
+  let stopWorking = hourNums[hourNums.length - 1];
+  console.log(startWorking);
+  console.log(stopWorking); 
+
+  console.log(`First Train comes in: ${firstTrainComesIn} mins...`);
+  console.log(`Second Train comes in: ${secondTrainComesIn} mins...`);
 
   // // next two trains
   // let firstN = 0;

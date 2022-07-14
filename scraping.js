@@ -17,18 +17,23 @@ module.exports =  (async () => {
   await page.goto('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/3320', {waitUntil: 'networkidle0'});
   
   //extract info from all table rows and map them onto a new array
-  const hours = await page.evaluate(() => {
-    const result = Array.from(document.querySelectorAll('#schedule_direction_10757_4424_container > div > div.schedule_times > table > tbody > tr > td > div > a'));
-    // if .innerText is put on Array.from, the execution context of puppeteer is destroyed
-    // to avoid that => return a new array that traverses the above by extrating innerText
-    // innerText instead of textContext because the former is aware of rendered appearance of text
-    return result.map(el => el.innerText);
+  let hours = await page.evaluate(() => {
+    // select selector
+    // wrap it the nodes in an array with Array.form()
+    // make each node list element an array element with .map();
+    let result = Array.from(document.querySelectorAll('div.schedule_times > table > tbody > tr > td > div > a')).map(el => el.innerHTML);
+    return result;
+    // NB: innerText() returns the VISIBLE text contained in a node, 
+    // while textContent() returns the FULL text. 
+    // Example => HTML     <span>Hello <span style="display: none;">World</span></span>; 
+    // innerText() will return 'Hello', while textContent() will return 'Hello World'. 
+    
   });
- 
+
   // Tried arr.push and arrow function but .replace() TypeError due to hours[i] undefined in for loop
   //  => seamless .map() solution
-  
-  const hourNums = hours.map(el => parseInt(el.replace(":", "")));
+  console.log(hours);
+  // const hourNums = hours.map(el => parseInt(el.replace(":", "")));
 
 
   
@@ -39,17 +44,17 @@ module.exports =  (async () => {
   let currentTime = Number('' + h + m);
   
 
-  // next two trains
-  let firstN = 0;
-  let secondN = 0;
+  // // next two trains
+  // let firstN = 0;
+  // let secondN = 0;
 
-  let i = 0;
-  while (hourNums[i] < currentTime) {
-    i++
-    firstN = hourNums[i];
-    let l = i + 1;
-    secondN = hourNums[l];
-  }
+  // let i = 0;
+  // while (hourNums[i] < currentTime) {
+  //   i++
+  //   firstN = hourNums[i];
+  //   let l = i + 1;
+  //   secondN = hourNums[l];
+  // }
   
   // metro offtime disclaimer
   // if (typeof firstN === 'undefined' && typeof secondN === 'undefined' || firstN === 0 && secondN === 0) {

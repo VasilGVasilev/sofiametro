@@ -59,3 +59,5 @@ window.onclick = function(event) {
     setTimeout(() => {modal.style.display = "none"}, 300);
   }
 }
+
+// delete unstaged commits with git reset --hard but then reaatch HEAD with new branch

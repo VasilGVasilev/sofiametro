@@ -1,7 +1,6 @@
 
 //dependencies
 
-const { first } = require('cheerio/lib/api/traversing');
 const puppeteer = require('puppeteer');
 
 

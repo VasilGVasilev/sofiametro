@@ -1,3 +1,18 @@
+// Express logic
+
+const express = require('express');
+const app = express();
+
+const scrapingFunc = require('./scraping')
+// const m = scrapingFunc.scrapingF();
+// console.log(m);
+app.get('/app', async (req, res) => {
+    const lemon = await scrapingFunc.scrapingF();
+    res.json(lemon);
+})
+
+app.listen(5500, () => console.log('Listening'))
+
 // MAIN LOGIC OF APP
 
 const stations = document.querySelectorAll('.station')

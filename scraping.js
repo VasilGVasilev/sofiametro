@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 
 //main function for our scraper
 
-module.exports =  (async () => {
+async function scrapingF() {
 
   //launching and opening our page
   const browser = await puppeteer.launch();
@@ -72,21 +72,28 @@ module.exports =  (async () => {
   let startWorking = hourNums[0];
   let stopWorking = hourNums[hourNums.length - 1];
 
-
+  let resultString = '';
   // FIX BUG - you dismiss the last train if it is after 0:00
   if (currentTime > startWorking || currentTime < stopWorking) {
-    console.log(`First Train comes in: ${firstTrainComesIn} mins...`);
+    // console.log(`First Train comes in: ${firstTrainComesIn} mins...`);
+    resultString+= 'First Train comes in: ' +firstTrainComesIn + ' mins...';
     if (secondTrainComesIn > 0){
-      console.log(`Second Train comes in: ${secondTrainComesIn} mins...`);
+      // console.log(`Second Train comes in: ${secondTrainComesIn} mins...`);
+      resultString+= '    ';
+      resultString+= 'Second Train comes in: ' + secondTrainComesIn +' mins...';
     }
 
   } else {
-    console.log(`Metro is not working.`);
+    resultString += 'Metro is not working';
+    // console.log(`Metro is not working.`);
   }
   
   await browser.close();
-})();
-
+  return resultString;
+};
+module.exports = {
+  scrapingF
+}
 // send data to be visualised on p.class="input"
 
 

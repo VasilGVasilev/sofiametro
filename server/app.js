@@ -23,9 +23,49 @@ app.get('/', async (req, res) => {
     // res.json(lemon);
 })
 
-app.get('/3320', async (req, res) => {
+//                M3
+//    Gorna Bania -> Hadji Dimitar
+
+
+
+app.get('/3336', async (req, res) => {
     // res.sendFile(path.join(__dirname, '../views/index.html'));
-    let dataNum = '3320';
+    let dataNum = '3336';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3334', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3334';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3332', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3332';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3330', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3330';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3328', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3328';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3324', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3324';
     const lemon = await scrapingFunc.scrapingF(dataNum);
     res.json(lemon);
 })
@@ -37,22 +77,39 @@ app.get('/3322', async (req, res) => {
     res.json(lemon);
 })
 
-// app.get('/trains', async (req, res) => {
-//     // res.sendFile(path.join(__dirname, '../views/index.html'));
-//     let dataNum = '3322';
-//     const lemon = await scrapingFunc.scrapingF(dataNum);
-//     res.json(lemon);
-// })
+app.get('/3320', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3320';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
 
-// app.post('/trains', async (req, res) => {
-//     //console.log(req.body.jobName) //Object.values to exract key:value<-- only
-//     // const jobDB = await scrapers.scrapeJob(req.body.jobName);//dont stringify, but use the value this way
-//     console.log(req.body); //but extract the value key:value in this was
-//     //todo: Add to DB
-//     // res.send(jobDB)
-//     res.send(req.body);
-    
-// })
+app.get('/3318', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3318';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
 
+app.get('/3316', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3316';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3312', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3312';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
+
+app.get('/3310', async (req, res) => {
+    // res.sendFile(path.join(__dirname, '../views/index.html'));
+    let dataNum = '3310';
+    const lemon = await scrapingFunc.scrapingF(dataNum);
+    res.json(lemon);
+})
 
 app.listen(5500, () => console.log('Listening...'))

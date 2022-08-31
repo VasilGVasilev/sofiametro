@@ -21,13 +21,31 @@ async function scrapingF(urlData) {
     // 1) select selector
     // 2) wrap it the nodes in an array with Array.form()
     // 3) make each node list element an array element with .map();
-    return result = Array.from(document.querySelectorAll('div.schedule_times > table > tbody > tr > td > div > a')).map(el => el.innerHTML);
+
+  
+
+    return result = Array.from(document.querySelectorAll('table > tbody > tr > td > div > a')).map(el => el.innerHTML);
+    
   });
 
   // Tried arr.push and arrow function but .replace() TypeError due to hours[i] undefined in for loop
   //  => seamless .map() solution
   const hourNums = hours.map(el => Number(el.replace(":", "")));
   
+  
+  let filteredHourNums = [];
+  
+  function timeSchedule(){
+    for (let i = 0; i < 150; i++){
+      if (hourNums[i] < hourNums[i+1]){
+        filteredHourNums.push(hourNums[i])
+      } else {
+        break
+      }
+    }
+  }
+  timeSchedule();
+
   
   // current time
   let current = new Date();
@@ -47,17 +65,17 @@ async function scrapingF(urlData) {
   // next two trains
   let firstTrain = 0;
   let secondTrain = 0;
-  for (let i = 0; i < hourNums.length; i++){
-    if (currentTime <= hourNums[i]){
+  for (let i = 0; i < filteredHourNums.length; i++){
+    if (currentTime <= filteredHourNums[i]){
       // bug fix of 100 to 60 min format -> from 7:59 to 8:00 is 1 min not 41 mins
-      if ((hourNums[i] - currentTime) > 40){
-        firstTrain = hourNums[i] - 40;
+      if ((filteredHourNums[i] - currentTime) > 40){
+        firstTrain = filteredHourNums[i] - 40;
       } else {
-        firstTrain = hourNums[i];
-        secondTrain = hourNums[i+1];
+        firstTrain = filteredHourNums[i];
+        secondTrain = filteredHourNums[i+1];
       }
-      if (hourNums[i+1] - currentTime > 40){
-        secondTrain = hourNums[i+1] - 40;
+      if (filteredHourNums[i+1] - currentTime > 40){
+        secondTrain = filteredHourNums[i+1] - 40;
       } 
       break;
     }
@@ -69,8 +87,8 @@ async function scrapingF(urlData) {
 
 
   // check for metro not working
-  let startWorking = hourNums[0];
-  let stopWorking = hourNums[hourNums.length - 1];
+  let startWorking = filteredHourNums[0];
+  let stopWorking = filteredHourNums[filteredHourNums.length - 1];
 
   let resultString = '';
   // FIX BUG - you dismiss the last train if it is after 0:00
@@ -87,7 +105,6 @@ async function scrapingF(urlData) {
     resultString += 'Metro is not working';
     // console.log(`Metro is not working.`);
   }
-  
   await browser.close();
   return resultString;
 };

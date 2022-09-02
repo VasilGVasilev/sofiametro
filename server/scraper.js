@@ -14,7 +14,7 @@ async function scrapingF(urlData) {
 
   // {waituntil + timeout} are crucial for navigating up to the precise moment of final state of rendering of a dynamic div
   // SUBJECT TO OPTIMISATION when in production -> when front is attached to back, try to catch error of exceeding max timeout by prompting a restart
-  await page.goto('https://schedules.sofiatraffic.bg/metro/M3#sign/4424/' + urlData, {waitUntil: 'networkidle2'});
+  await page.goto('https://schedules.sofiatraffic.bg/metro/M3#sign/' + urlData, {waitUntil: 'networkidle2'});
   
   //extract info from all table rows and map them onto a new array
   let hours = await page.evaluate(() => {
@@ -45,7 +45,6 @@ async function scrapingF(urlData) {
     }
   }
   timeSchedule();
-
   
   // current time
   let current = new Date();

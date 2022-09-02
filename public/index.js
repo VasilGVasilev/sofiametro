@@ -18,10 +18,11 @@
 
 
 const stations = document.querySelectorAll('.station')
-const span = document.getElementsByClassName("close")[0];
-const trainBtn = document.getElementById('train-btn');
+const span = document.getElementsByClassName('#close');
+const trainBtnOne = document.getElementById('train-btn-one');
+const trainBtnTwo = document.getElementById('train-btn-two');
 const modalBody = document.getElementById('modal-body');
-
+const modalTitle = document.getElementById('modal-title');
 
 // selecting a station
 for (let i = 0; i < stations.length; i++){
@@ -35,17 +36,43 @@ for (let i = 0; i < stations.length; i++){
       document.getElementById('modal-box').style.animation = 'bounce 0.6s'
       // modal content is set to new fetures
       document.getElementById('modal-box').style.transform = 'translate(-50%)';
-      document.getElementById('modal-box').style.top = '40%';
+      document.getElementById('modal-box').style.top = '20%';
       document.getElementById('modal-box').style.left = '50%';
       document.getElementById('modal-box').style.zIndex = '20';
-      
-      trainBtn.addEventListener('click', async () => {
+
+
+      let rawData = currentStation.getAttribute('data-num');
+      let arrOfTwoStations = rawData.split(',');
+      let directionOne = arrOfTwoStations.shift();
+      let directionTwo = arrOfTwoStations.shift();
+
+      let divContents = currentStation.getAttribute('id');
+      modalTitle.innerHTML = divContents;
+
+      trainBtnOne.addEventListener('click', async () => {
         // clear modal-body
         modalBody.replaceChildren();
         
         //   logic to push button to show trains 
-        let selectedStation = currentStation.getAttribute('data-num');
-        let fetchURL = 'http://localhost:5500/' + selectedStation;
+        
+        let fetchURL = 'http://localhost:5500/' + directionOne;
+
+        await fetch(fetchURL)
+        .then((response) => response.json())
+        .then((data) => {
+          modalBody.replaceChildren();
+          modalBody.innerHTML+=data;
+
+        })
+      })
+
+      trainBtnTwo.addEventListener('click', async () => {
+        // clear modal-body
+        modalBody.replaceChildren();
+        
+        //   logic to push button to show trains 
+        
+        let fetchURL = 'http://localhost:5500/' + directionTwo;
 
         await fetch(fetchURL)
         .then((response) => response.json())
@@ -74,8 +101,9 @@ for (let i = 0; i < stations.length; i++){
 // When the user clicks on <span> (x), close the modal
 document.getElementById('close-btn').onclick = function() {
     
-    // clear modal-body
+    // clear modal-body and title
     modalBody.replaceChildren();
+    modalTitle.replaceChildren();
     // animation is set in motion
     document.getElementById('modal-box').style.animation = 'bounce-off 0.5s';
     // modal conent is revert to inital state
@@ -96,8 +124,9 @@ window.onclick = function(event) {
    
     if (event.target == document.getElementById("myModal")) {
       
-      // clear modal-body
+      // clear modal-body and title
       modalBody.replaceChildren();
+      modalTitle.replaceChildren();
       // animation is set in motion
       document.getElementById('modal-box').style.animation = 'bounce-off 0.5s';
       // modal is reverted to original state

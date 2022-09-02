@@ -52,13 +52,13 @@
   /* Modal Content */
 
   .modal-content {
-    width: 25%;
+    width: 90%;
     min-width: 200px;
     height: auto;
-    padding: 20px 30px;
+    padding: 40px 60px;
     color:#000;
     background-color: #FCF8F5;
-    position: fixed;
+    position: relative;
     top: none;
     left: none;
     transform: none;
@@ -72,12 +72,37 @@
     display: flex;
     justify-content: space-between;
   }
-  /* css for close button animation */
-  
-  
 
+  .modal-title {
+    background-color: lightskyblue;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    text-align: center;
+    box-shadow: 2px 2px 2px darkcyan;
+  }
 
+  .forSpace {
+    margin: 5px 0px;
+  }
 
+  .modal-body {
+    background-color: lightgray;
+    box-shadow: 2px 2px 2px lightskyblue;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .btn {
+    border-radius: 20%;
+    box-shadow: 2px 2px 2px lightskyblue;
+    border: none;
+  }
 
   /*Animation For Modal-Open*/
 
@@ -95,15 +120,15 @@
   }
 
   /* The Close Button */
-  .close {
+  #close-btn {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
 
-  .close:hover,
-  .close:focus {
+  #close-btn:hover,
+  #close-btn:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
